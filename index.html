@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Sun, Earth, and Saturn</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(40deg, black, rgb(32, 32, 32), black);
+            overflow: hidden;
+        }
+
+        #clock{
+            background-color: #00a2cb transparent;
+            color: yellow;
+            padding: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            margin: 25px 25px;
+            border: 0.1em solid yellow;
+            
+        }
+
+        .container {
+            font-size: 10px;
+            width: 40em;
+            height: 40em;
+            position: relative;
+        }
+
+        .sun {
+            position: absolute;
+            top: 15em;
+            left: 15em;
+            width: 10em;
+            height: 10em;
+            background: linear-gradient(0deg, yellow, rgb(255, 153, 0), yellow);
+            border-radius: 50%;
+            box-shadow: 0 0 2em white;
+        }
+
+        .earth,
+        .moon {
+            position: absolute;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+            border-width: 0.1em 0.1em 0 0;
+            border-radius: 50%;
+        }
+
+        .earth {
+            top: 5em;
+            left: 5em;
+            width: 30em;
+            height: 30em;
+            animation: orbit-earth 20.5s linear infinite;
+        }
+
+        .moon {
+            top: 3px;
+            right: 2px;
+            width: 8em;
+            height: 8em;
+            animation: orbit-moon 2.7s linear infinite;
+        }
+
+        .earth::before {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            top: 2.8em;
+            right: 2.8em;
+            width: 3em;
+            height: 3em;
+            background: linear-gradient(20deg, blue, rgb(61, 200, 255), blue);
+        }
+
+        .moon::before {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            top: 0.8em;
+            right: 0.2em;
+            width: 1.2em;
+            height: 1.2em;
+            background-color: silver;
+        }
+
+        .saturnus,
+        .cincin {
+            position: absolute;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+            border-width: 0.1em 0.1em 0 0;
+            border-radius: 50%;
+        }
+
+        .saturnus {
+            top: -50px;
+            left: -50px;
+            width: 50em;
+            height: 50em;
+            animation: orbit-saturn 35.5s linear infinite;
+        }
+
+        .cincin {
+            top: 63px;
+            right: 27px;
+            width: 7em;
+            height: 2em;
+            border-style: solid;
+            border-color: rgb(182, 109, 0);
+            border-width: 0.5em 0.4em 0 0.5em;
+
+        }
+
+        .saturnus::before {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            top: 5em;
+            right: 4em;
+            width: 5em;
+            height: 5em;
+            background: linear-gradient(20deg, rgb(49, 48, 0), rgb(161, 124, 0), rgb(41, 27, 0));
+        }
+
+
+        @keyframes orbit-earth {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbit-moon {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbit-saturn {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .stars {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 10s linear infinite, shooting-star 5s linear infinite;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shooting-star {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-100vw) translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                font-size: 5px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .saturnus {
+                top: -25px;
+                left: -25px;
+                width: 50em;
+                height: 50em;
+                animation: orbit-saturn 50s linear infinite;
+            }
+
+            .cincin {
+                top: 32px;
+                right: 13px;
+                width: 7em;
+                height: 2em;
+                border-color: rgb(196, 117, 0);
+                border-width: 0.5em 0.4em 0 0.5em;
+            }
+
+            .moon {
+                top: 0;
+                right: 0;
+                width: 8em;
+                height: 8em;
+                animation: orbit-moon 2.7s linear infinite;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="clock"></div>
+        </nav>
+    </header>
+
+    <div class="stars"></div>
+    <div class="container">
+        <div class="sun"></div>
+        <div class="earth">
+            <div class="moon"></div>
+        </div>
+        <div class="saturnus">
+            <div class="cincin"></div>
+        </div>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.querySelector('.stars');
+        const numberOfStars = 200;
+
+        for (let i = 0; i < numberOfStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 10}s`;
+
+            starsContainer.appendChild(star);
+        }
+    </script>
+
+    <script>
+        // Function to update the clock
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock initially
+        updateClock();
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+
+</html>
